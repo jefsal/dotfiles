@@ -1,0 +1,18 @@
+var U=Object.create;var p=Object.defineProperty;var C=Object.getOwnPropertyDescriptor;var I=Object.getOwnPropertyNames;var O=Object.getPrototypeOf,L=Object.prototype.hasOwnProperty;var D=(e,r)=>{for(var t in r)p(e,t,{get:r[t],enumerable:!0})},x=(e,r,t,c)=>{if(r&&typeof r=="object"||typeof r=="function")for(let s of I(r))!L.call(e,s)&&s!==t&&p(e,s,{get:()=>r[s],enumerable:!(c=C(r,s))||c.enumerable});return e};var $=(e,r,t)=>(t=e!=null?U(O(e)):{},x(r||!e||!e.__esModule?p(t,"default",{value:e,enumerable:!0}):t,e)),M=e=>x(p({},"__esModule",{value:!0}),e);var W={};D(W,{default:()=>A});module.exports=M(W);var a=require("@raycast/api");var d=require("@raycast/api");var l=$(require("react")),n=require("@raycast/api");var u=$(require("node:fs")),m=$(require("node:path"));var S=require("react/jsx-runtime");function b(e,r){let t=e instanceof Error?e.message:String(e);return(0,n.showToast)({style:n.Toast.Style.Failure,title:r?.title??"Something went wrong",message:r?.message??t,primaryAction:r?.primaryAction??v(e),secondaryAction:r?.primaryAction?v(e):void 0})}var v=e=>{let r=!0,t="[Extension Name]...",c="";try{let o=JSON.parse((0,u.readFileSync)((0,m.join)(n.environment.assetsPath,"..","package.json"),"utf8"));t=`[${o.title}]...`,c=`https://raycast.com/${o.owner||o.author}/${o.name}`,(!o.owner||o.access==="public")&&(r=!1)}catch{}let s=n.environment.isDevelopment||r,g=e instanceof Error?e?.stack||e?.message||"":String(e);return{title:s?"Copy Logs":"Report Error",onAction(o){o.hide(),s?n.Clipboard.copy(g):(0,n.open)(`https://github.com/raycast/extensions/issues/new?&labels=extension%2Cbug&template=extension_bug_report.yml&title=${encodeURIComponent(t)}&extension-url=${encodeURI(c)}&description=${encodeURIComponent(`#### Error:
+\`\`\`
+${g}
+\`\`\`
+`)}`)}}};var h=require("react");function E(){let[e,r]=(0,h.useState)([]),[t,c]=(0,h.useState)(!0);(0,h.useEffect)(()=>{s()},[]);let s=async()=>{try{c(!0);let i=await d.LocalStorage.getItem("gemini_command_history");i&&r(JSON.parse(i)),c(!1)}catch(i){b(i),console.error("Failed to load command history:",i),c(!1)}};return{history:e,isLoading:t,addToHistory:async(i,_,R)=>{try{let f=await d.LocalStorage.getItem("gemini_command_history"),y=f?JSON.parse(f):[],T={id:Date.now(),timestamp:new Date().toISOString(),prompt:i,response:_,model:R},P=new Date(Date.now()-1e3).toISOString();if(y.some(k=>k.prompt===i&&k.timestamp>P))return;let w=[T,...y];await d.LocalStorage.setItem("gemini_command_history",JSON.stringify(w)),r(w)}catch(f){b(f),console.error("Failed to add to command history:",f)}},clearHistory:async()=>{try{r([]),await d.LocalStorage.removeItem("gemini_command_history")}catch(i){b(i),console.error("Failed to clear command history:",i)}},loadHistory:s}}function A(){let{history:e,clearHistory:r}=E();return _jsx(a.List,{isShowingDetail:!0},e.map(t=>_jsx(a.List.Item,{key:t.id,title:t.prompt.length>60?t.prompt.substring(0,60)+"...":t.prompt,subtitle:new Date(t.timestamp).toLocaleString(),accessories:[{text:t.model?`Model: ${t.model}`:"Model: Not specified",tooltip:"Model used for this query"}],detail:_jsx(a.List.Item.Detail,{markdown:`## Prompt
+
+${t.prompt}
+
+---
+
+## Response
+
+${t.response}
+
+---
+
+**Time**: ${new Date(t.timestamp).toLocaleString()}
+**Model**: ${t.model||"Not specified"}`}),actions:_jsx(a.ActionPanel,null,_jsx(a.Action.CopyToClipboard,{title:"Copy Response",content:t.response,shortcut:{modifiers:["cmd"],key:"c"}}),_jsx(a.Action.CopyToClipboard,{title:"Copy Prompt",content:t.prompt,shortcut:{modifiers:["cmd","shift"],key:"c"}}),_jsx(a.Action,{title:"Clear History",icon:a.Icon.Trash,shortcut:{modifiers:["shift","cmd"],key:"backspace"},onAction:async()=>{await(0,a.confirmAlert)({title:"Are you sure?"})&&r()}}))})))}
