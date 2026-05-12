@@ -1,0 +1,13 @@
+[core]
+	autocrlf = input
+	excludesfile = /Users/jef/.gitignore_global
+	editor = nvim
+[user]
+	name = jefsal
+	email = 159089127+jefsal@users.noreply.github.com
+[credential]
+	helper = osxkeychain
+[pull]
+	rebase = false
+[init]
+	defaultBranch = main
