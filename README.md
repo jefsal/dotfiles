@@ -5,5 +5,10 @@ GNU Stow is used to create and manage symlinks for packages
 ```
 brew install stow
 ```
+or
+
+```
+sudo apt install stow
+```
 
 
