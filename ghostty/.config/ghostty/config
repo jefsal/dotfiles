@@ -4,7 +4,7 @@ font-family = "MesloLGS NF"
 
 font-size = 16
 
-background-opacity = 0.89
+background-opacity = 0.85
 
 # Cursor preferences
 cursor-style-blink = true
