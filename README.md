@@ -11,4 +11,9 @@ or
 sudo apt install stow
 ```
 
+then get started with
+```
+stow <package-name> <package-name>
+``` 
+don't specify path to select the default parent dir
 
