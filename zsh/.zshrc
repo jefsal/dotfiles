@@ -1,5 +1,10 @@
 export PATH="/usr/local/bin:$PATH"
 
+# enable zsh completion and match file/directory names case-insensitively.
+autoload -Uz compinit
+compinit
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -36,3 +41,4 @@ alias getm='geta'
 
 # Snowflake 
 alias snowsql=/Applications/SnowSQL.app/Contents/MacOS/snowsql
+eval "$(direnv hook zsh)"
