@@ -39,3 +39,8 @@ rm -rf nvim-dev
 stow nvim-lite
 ```
 
+
+## zsh
+
+Prompt format is `user@hostname dir %`, with the hostname and `%` in bold green.
+Also includes case-insensitive tab completion and a few aliases.

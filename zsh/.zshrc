@@ -33,8 +33,8 @@ geta() {
     scp -r "$src" "$dest"
 }
 
-# green % sign
-PROMPT='%n@%m %1~ %B%F{green}%%%f%b '
+# green hostname and % sign
+PROMPT='%n@%B%F{green}%m%f%b %1~ %B%F{green}%%%f%b '
 
 # Alias Assignemnt 
 alias getm='geta'
